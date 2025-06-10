@@ -7,7 +7,7 @@
                 <h3>{{ card.name }}</h3>
                 <img style="height: 8em; padding: 10px" src="/assets/game/question.svg" class="img" v-show="!card.isOpened" />
                 <img style="height: 8em; padding: 10px" src="/assets/game/coin.png" class="img" v-show="card.isOpened && card.id == coinCard" />
-                <img style="height: 8em; padding: 10px" src="/assets/game/bomb.svg" v-show="card.isOpened && card.id != coinCard" />
+                <img style="height: 8em; padding: 10px" src="/assets/game/bomb.svg" v-show="card.isOpened && card.id != coinCard" class="blinking"/>
             </button>
         </div>
         <h4>
@@ -102,5 +102,19 @@
         border-width: 0.2em;
         border-color: darkgrey;
         outline-color: red;
+    }
+    .blinking {
+        animation: blink 1s infinite;
+    }
+    @keyframes blink {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
     }
 </style>

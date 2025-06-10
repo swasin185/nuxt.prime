@@ -27,12 +27,5 @@ export default defineNuxtConfig({
       password:
         process.env.NUXT_SESSION_SECRET || "1234567_1234567_1234567_12345678",
     },
-  },
-  content: {
-    highlight: {
-      theme: {
-        default: 'github-light'
-      }
-    }
   }
 })
