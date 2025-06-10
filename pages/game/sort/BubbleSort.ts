@@ -4,7 +4,7 @@ export default class BubbleSort extends Sort {
         super(n, canvasId)
     }
 
-    public async runSort() {
+    public override async runSort() {
         super.runSort()
         let sorted = false
         let x: any = -1

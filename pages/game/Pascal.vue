@@ -307,7 +307,7 @@
                 }
             }
             paint()
-            await new Promise((r) => setTimeout(r, 4))
+            await new Promise((r) => setTimeout(r, 10))
             while (value.value == 'Pause') {
                 await new Promise((r) => setTimeout(r, 1000))
             }

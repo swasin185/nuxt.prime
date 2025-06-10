@@ -1,8 +1,8 @@
 <template>
     <div id="toolbar" style="background: white; width: 180px; float: left; padding: 10px 10px; border: 2px solid; margin: 20px">
         <label id="sizeLabel" for="sizeInput">Size:</label>
-        <input type="number" id="sizeInput" min="10" max="330" step="10" value="100" style="width: 50px; float: right; text-align: right" />
-        <input type="range" id="sizeSlider" min="10" max="330" step="10" value="100" @input="sizeInput.value = sizeSlider.value" />
+        <input type="number" id="sizeInput" min="10" max="1000" step="10" value="100" style="width: 50px; float: right; text-align: right" />
+        <input type="range" id="sizeSlider" min="10" max="1000" step="10" value="100" @input="sizeInput.value = sizeSlider.value" />
         <label id="connectLabel" for="connInput">Connect:</label>
         <input type="number" id="connInput" min="0" max="1" step="0.1" value="0.5" style="width: 50px; float: right; text-align: right" />
         <input type="range" id="connSlider" min="0" max="1" step="0.1" value="0.5" @input="connInput.value = connSlider.value" />

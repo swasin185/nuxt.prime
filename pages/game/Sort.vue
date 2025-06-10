@@ -30,6 +30,7 @@ onMounted(() => {
 <style scoped>
 canvas {
     border: 1px solid #777;
+    background-color: orange;
 }
 
 button {
