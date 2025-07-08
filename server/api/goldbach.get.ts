@@ -19,8 +19,7 @@ export default eventHandler(async (req) => {
     const half = n / 2
     for (let k = 3; k < n; k++) {
         while (Prime.getPrime(p).toNumber() < k) p++
-        if (n == k + 1) des = '└' + des
-        else if (Prime.getPrime(p).toNumber() == k) {
+        if (Prime.getPrime(p).toNumber() == k) {
             if (half > k) asc += '┬'
             else des = '┴' + des
         } else {
@@ -31,6 +30,7 @@ export default eventHandler(async (req) => {
             }
         }
     }
+    des = '└' + des
 
     const pair: number[] = new Array(gb.length)
     let row: string = ''

@@ -12,19 +12,20 @@ export default class Prime {
 
     static {
         try {
-            console.log('connect redis primes ...')
             console.time('get primes')
             useStorage('data').getItem('primes').then((primes) => {
                 if (primes) {
                     const p = primes as string[]
                     Prime.primeArray = new Array(p.length)
-                    for (let i = 0; i < p.length; i++) Prime.primeArray[i] = new Big(p[i])
+                    for (let i = 0; i < p.length; i++) {
+                        Prime.primeArray[i] = new Big(p[i])
+                    }
                     Prime.n = Prime.primeArray.length
                 } else {
                     Prime.createPrimeArray('100')
                 }
-                console.timeEnd('get primes')
-                const sum = Prime.sumReciprocal(Prime.n)
+                console.timeEnd('get primes') 
+                console.log(Prime.primeArray)
             })
         } catch (err) {
             console.log('Redis data Error!', err)
