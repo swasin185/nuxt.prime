@@ -10,26 +10,26 @@ export default class Prime {
     private static primeArray: Big[] = [Big(2), Big(3), Big(5), Big(7), Big(11), Big(13), Big(17), Big(19), Big(23)]
     private static n: number = Prime.primeArray.length
 
-    // static {
-    //     try {
-    //         console.log('connect redis primes ...')
-    //         console.time('get primes')
-    //         useStorage('vercelkv').getItem('primes').then((primes) => {
-    //             if (primes) {
-    //                 const p = primes as string[]
-    //                 Prime.primeArray = new Array(p.length)
-    //                 for (let i = 0; i < p.length; i++) Prime.primeArray[i] = new Big(p[i])
-    //                 Prime.n = Prime.primeArray.length
-    //             } else {
-    //                 Prime.createPrimeArray('100')
-    //             }
-    //             console.timeEnd('get primes')
-    //             const sum = Prime.sumReciprocal(Prime.n)
-    //         })
-    //     } catch (err) {
-    //         console.log('Redis vercelkv Error!', err)
-    //     }
-    // }
+    static {
+        try {
+            console.log('connect redis primes ...')
+            console.time('get primes')
+            useStorage('data').getItem('primes').then((primes) => {
+                if (primes) {
+                    const p = primes as string[]
+                    Prime.primeArray = new Array(p.length)
+                    for (let i = 0; i < p.length; i++) Prime.primeArray[i] = new Big(p[i])
+                    Prime.n = Prime.primeArray.length
+                } else {
+                    Prime.createPrimeArray('100')
+                }
+                console.timeEnd('get primes')
+                const sum = Prime.sumReciprocal(Prime.n)
+            })
+        } catch (err) {
+            console.log('Redis data Error!', err)
+        }
+    }
 
     public static getPrimes() {
         return Prime.primeArray.slice(0, Prime.n)
@@ -146,12 +146,12 @@ export default class Prime {
             lp = lp.add(2)
             if (Prime.findDivisor(lp).eq(Prime.ONE)) {
                 if (Prime.primeArray.length === Prime.n) {
-                    // useStorage('vercelkv').setItem('primes', Prime.primeArray)
-                    // console.log('update primes redis', Prime.n)
+                    useStorage('data').setItem('primes', Prime.primeArray)
+                    console.log('update primes redis', Prime.n)
                     Prime.extendArray()
                 }
                 Prime.primeArray[Prime.n++] = lp
-                if (Prime.n % 1000 === 0) {
+                if (Prime.n % 100 === 0) {
                     console.log('primes count to', Prime.n)
                 }
             }
