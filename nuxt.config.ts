@@ -1,11 +1,6 @@
 import Aura from '@primevue/themes/aura';
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
-  vite: {
-    build: {
-      target: 'es2025' // Set the JavaScript target
-    }
-  },
   devtools: { enabled: true },
   modules: ['@primevue/nuxt-module', 'nuxt-auth-utils', '@nuxt/content'],
   primevue: {
