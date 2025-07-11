@@ -1,6 +1,11 @@
 import Aura from '@primevue/themes/aura';
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
+  vite: {
+    build: {
+      target: 'es2025' // Set the JavaScript target
+    }
+  },
   devtools: { enabled: true },
   modules: ['@primevue/nuxt-module', 'nuxt-auth-utils', '@nuxt/content'],
   primevue: {
@@ -25,7 +30,7 @@ export default defineNuxtConfig({
     session: {
       maxAge: 60 * 5, // 5 minutes
       password:
-        process.env.NUXT_SESSION_SECRET || "1234567_1234567_1234567_12345678",
+        process.env.NUXT_SESSION_PASSWORD || "1234567_1234567_1234567_12345678",
     },
   }
 })

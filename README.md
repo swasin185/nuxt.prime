@@ -11,6 +11,7 @@ pnpm add -D @primevue/forms
 pnpm add -D @primevue/themes
 pnpm add -D primevue primeicons primeflex
 pnpm add -D big.js @types/big.js chart.js
+pnpm add redis
 ```
 ## nuxt-auth-utils
 ```bash
@@ -24,26 +25,36 @@ npx nuxi@latest module add content
 ## [package.json]
 ```json
 {
-  ...
+  "name": "nuxt.prime",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
   "dependencies": {
     "@nuxt/content": "^2.13.4",
-    "nuxt": "^3.17.5",
+    "nuxt": "^3.17.6",
     "nuxt-auth-utils": "^0.5.20",
+    "redis": "^5.6.0",
     "vue": "latest",
     "vue-router": "latest"
   },
   "devDependencies": {
-    "@primevue/forms": "^4.3.5",
-    "@primevue/nuxt-module": "^4.3.5",
-    "@primevue/themes": "^4.3.5",
+    "@primevue/forms": "^4.3.6",
+    "@primevue/nuxt-module": "^4.3.6",
+    "@primevue/themes": "^4.3.6",
     "@types/big.js": "^6.2.2",
     "big.js": "^6.2.2",
-    "chart.js": "^4.4.9",
+    "chart.js": "^4.5.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
-    "primevue": "^4.3.5"
+    "primevue": "^4.3.6"
   },
-  ...
+  "packageManager": "pnpm@10.13.1+sha512.37ebf1a5c7a30d5fabe0c5df44ee8da4c965ca0c5af3dbab28c3a1681b70a256218d05c81c9c0dcf767ef6b8551eb5b960042b9ed4300c59242336377e01cfad"
 }
 ```
 
