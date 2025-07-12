@@ -11,7 +11,6 @@ pnpm add -D @primevue/forms
 pnpm add -D @primevue/themes
 pnpm add -D primevue primeicons primeflex
 pnpm add -D big.js @types/big.js chart.js
-pnpm add redis
 ```
 ## nuxt-auth-utils
 ```bash

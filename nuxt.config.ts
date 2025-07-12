@@ -27,5 +27,17 @@ export default defineNuxtConfig({
       password:
         process.env.NUXT_SESSION_PASSWORD || "1234567_1234567_1234567_12345678",
     },
+  },
+  nitro: {
+    storage: {
+      redis: {
+        driver: 'redis',
+        port: parseInt(process.env.REDIS_PORT || '6376'), // Redis port
+        host: process.env.REDIS_HOST,
+        username: process.env.REDIS_USER || 'default',
+        password: process.env.REDIS_PASSWORD, 
+        db: 0, // Defaults to 0
+      }
+    }
   }
 })

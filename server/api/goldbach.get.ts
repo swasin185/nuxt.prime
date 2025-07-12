@@ -10,28 +10,29 @@ export default eventHandler(async (req) => {
     const n = query.x as number
     let i = n
     let gb: string[] = []
-    let text: string = '<h1>Goldbach\'s conjecture</h1>'
     gb = Prime.conjGoldbach(String(i))
     const dash = '─'
     let asc = '┌'
     let des = ''
     let p = 1
     const half = n / 2
-    for (let k = 3; k < n; k++) {
+    for (let k = 3; k < n - 1; k++) {
         while (Prime.getPrime(p).toNumber() < k) p++
-        if (Prime.getPrime(p).toNumber() == k) {
+        if (Prime.getPrime(p).toNumber() === k) {
             if (half > k) asc += '┬'
             else des = '┴' + des
         } else {
             if (half > k) {
-                if (k % 2 != 0) asc += dash
+                if (k % 2 !== 0) asc += dash
             } else {
-                if (k % 2 != 0) des = dash + des
+                if (k % 2 !== 0) des = dash + des
             }
         }
     }
     des = '└' + des
 
+    let text: string = '<h1>Goldbach\'s conjecture</h1>'
+    text += '<h4>Every even number greater than 2 can be expressed as the sum of two prime numbers. * 1 is not prime!</h4>' 
     const pair: number[] = new Array(gb.length)
     let row: string = ''
     for (const z of gb) {
@@ -46,7 +47,7 @@ export default eventHandler(async (req) => {
         text += row
     }
     text += asc + '<br>' + des + '<br>'
-    text += 'x = ' + x + '\t gb = ' + gb.length + ' = ' + gb.toString()
+    text += 'x = ' + x + '\t gb = ' + gb.length + ' = ' + gb.toString() + '<br>'
     setResponseHeader(req, "Content-Type", "text/html; charset=utf-8")
     return text
 })

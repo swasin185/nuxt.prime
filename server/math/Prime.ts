@@ -13,7 +13,7 @@ export default class Prime {
     static {
         try {
             console.time('get primes')
-            useStorage('data').getItem('primes').then((primes) => {
+            useStorage('redis').getItem('primes').then((primes) => {
                 if (primes) {
                     const p = primes as string[]
                     Prime.primeArray = new Array(p.length)
@@ -25,7 +25,7 @@ export default class Prime {
                     Prime.createPrimeArray('100')
                 }
                 console.timeEnd('get primes') 
-                console.log(Prime.primeArray)
+                // console.log(Prime.primeArray)
             })
         } catch (err) {
             console.log('Redis data Error!', err)
@@ -147,8 +147,9 @@ export default class Prime {
             lp = lp.add(2)
             if (Prime.findDivisor(lp).eq(Prime.ONE)) {
                 if (Prime.primeArray.length === Prime.n) {
-                    useStorage('data').setItem('primes', Prime.primeArray)
-                    console.log('update primes redis', Prime.n)
+                    if (Prime.n < 9999) // prevent storage overflow
+                        useStorage('redis').setItem('primes', Prime.primeArray)
+                    // console.log('update primes redis', Prime.n)
                     Prime.extendArray()
                 }
                 Prime.primeArray[Prime.n++] = lp

@@ -17,9 +17,6 @@ importers:
       nuxt-auth-utils:
         specifier: ^0.5.20
         version: 0.5.20(magicast@0.3.5)
-      redis:
-        specifier: ^5.6.0
-        version: 5.6.0
       vue:
         specifier: latest
         version: 3.5.17(typescript@5.8.3)
@@ -925,34 +922,6 @@ packages:
   '@primevue/themes@4.3.6':
     resolution: {integrity: sha512-2yxfBZCuXU10pPfS6lysJpP1RqAwZVD+9tQi0cTieshD7Rq9HTZfInuJzqIfBcxGns2rolARi3+B3RQ53NBz1A==}
     engines: {node: '>=12.11.0'}
-
-  '@redis/bloom@5.6.0':
-    resolution: {integrity: sha512-l13/d6BaZDJzogzZJEphIeZ8J0hpQpjkMiozomTm6nJiMNYkoPsNOBOOQua4QsG0fFjyPmLMDJFPAp5FBQtTXg==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      '@redis/client': ^5.6.0
-
-  '@redis/client@5.6.0':
-    resolution: {integrity: sha512-wmP9kCFElCSr4MM4+1E4VckDuN4wLtiXSM/J0rKVQppajxQhowci89RGZr2OdLualowb8SRJ/R6OjsXrn9ZNFA==}
-    engines: {node: '>= 18'}
-
-  '@redis/json@5.6.0':
-    resolution: {integrity: sha512-YQN9ZqaSDpdLfJqwzcF4WeuJMGru/h4WsV7GeeNtXsSeyQjHTyDxrd48xXfRRJGv7HitA7zGnzdHplNeKOgrZA==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      '@redis/client': ^5.6.0
-
-  '@redis/search@5.6.0':
-    resolution: {integrity: sha512-sLgQl92EyMVNHtri5K8Q0j2xt9c0cO9HYurXz667Un4xeUYR+B/Dw5lLG35yqO7VvVxb9amHJo9sAWumkKZYwA==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      '@redis/client': ^5.6.0
-
-  '@redis/time-series@5.6.0':
-    resolution: {integrity: sha512-tXABmN1vu4aTNL3WI4Iolpvx/5jgil2Bs31ozvKblT+jkUoRkk8ykmYo9Pv/Mp7Gk6/Qkr/2rMgVminrt/4BBQ==}
-    engines: {node: '>= 18'}
-    peerDependencies:
-      '@redis/client': ^5.6.0
 
   '@rolldown/pluginutils@1.0.0-beta.26':
     resolution: {integrity: sha512-r/5po89voz/QRPDmoErL10+hVuTAuz1SHvokx+yWBlOIPB5C41jC7QhLqq9kaebx/+EHyoV3z22/qBfX81Ns8A==}
@@ -3493,10 +3462,6 @@ packages:
     resolution: {integrity: sha512-DJnGAeenTdpMEH6uAJRK/uiyEIH9WVsUmoLwzudwGJUwZPp80PDBWPHXSAGNPwNvIXAbe7MSUB1zQFugFml66A==}
     engines: {node: '>=4'}
 
-  redis@5.6.0:
-    resolution: {integrity: sha512-0x3pM3SlYA5azdNwO8qgfMBzoOqSqr9M+sd1hojbcn0ZDM5zsmKeMM+zpTp6LIY+mbQomIc/RTTQKuBzr8QKzQ==}
-    engines: {node: '>= 18'}
-
   regex-recursion@5.1.1:
     resolution: {integrity: sha512-ae7SBCbzVNrIjgSbh7wMznPcQel1DNlDtzensnFxpiNpXt1U2ju/bHugH422r+4LAVS1FpW1YCwilmnNsjum9w==}
 
@@ -5441,26 +5406,6 @@ snapshots:
     dependencies:
       '@primeuix/styled': 0.7.0
       '@primeuix/themes': 1.2.1
-
-  '@redis/bloom@5.6.0(@redis/client@5.6.0)':
-    dependencies:
-      '@redis/client': 5.6.0
-
-  '@redis/client@5.6.0':
-    dependencies:
-      cluster-key-slot: 1.1.2
-
-  '@redis/json@5.6.0(@redis/client@5.6.0)':
-    dependencies:
-      '@redis/client': 5.6.0
-
-  '@redis/search@5.6.0(@redis/client@5.6.0)':
-    dependencies:
-      '@redis/client': 5.6.0
-
-  '@redis/time-series@5.6.0(@redis/client@5.6.0)':
-    dependencies:
-      '@redis/client': 5.6.0
 
   '@rolldown/pluginutils@1.0.0-beta.26': {}
 
@@ -8473,14 +8418,6 @@ snapshots:
   redis-parser@3.0.0:
     dependencies:
       redis-errors: 1.2.0
-
-  redis@5.6.0:
-    dependencies:
-      '@redis/bloom': 5.6.0(@redis/client@5.6.0)
-      '@redis/client': 5.6.0
-      '@redis/json': 5.6.0(@redis/client@5.6.0)
-      '@redis/search': 5.6.0(@redis/client@5.6.0)
-      '@redis/time-series': 5.6.0(@redis/client@5.6.0)
 
   regex-recursion@5.1.1:
     dependencies:
