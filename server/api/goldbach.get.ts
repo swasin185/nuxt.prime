@@ -16,21 +16,16 @@ export default eventHandler(async (req) => {
     let des = ''
     let p = 1
     const half = n / 2
-    for (let k = 3; k < n - 1; k++) {
+    for (let k = 3; k < n; k += 2) {
         while (Prime.getPrime(p).toNumber() < k) p++
-        if (Prime.getPrime(p).toNumber() === k) {
-            if (half > k) asc += '┬'
-            else des = '┴' + des
+        if (Prime.getPrime(p).toNumber() == k) {
+            if (half >= k) asc += '┬'
+            if (half <= k) des = '┴' + des
         } else {
-            if (half > k) {
-                if (k % 2 !== 0) asc += dash
-            } else {
-                if (k % 2 !== 0) des = dash + des
-            }
+            if (half >= k) asc += dash
+            if (half <= k) des = dash + des
         }
     }
-    des = '└' + des
-
     let text: string = '<h1>Goldbach\'s conjecture</h1>'
     text += '<h4>Every even number greater than 2 can be expressed as the sum of two prime numbers. * 1 is not prime!</h4>' 
     const pair: number[] = new Array(gb.length)
