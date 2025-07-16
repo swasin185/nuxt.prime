@@ -20,7 +20,7 @@ const password: Ref<string> = ref('')
 
 async function login() {
     // await $fetch('/api/auth/github', {
-    await $fetch('/api/auth/local', {
+    await useFetch('/api/auth/local', {
         query: { username: username.value, password: password.value }
     })
     location.reload()

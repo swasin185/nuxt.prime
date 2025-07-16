@@ -1,5 +1,3 @@
-import { getRedis } from '~/server/utils/redis'
-
 export default eventHandler(async () => {
     // const redis = await getRedis()
     const redis = useStorage('redis')

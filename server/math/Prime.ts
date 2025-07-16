@@ -162,7 +162,8 @@ export default class Prime {
 
     public static conjGoldbach(n: string): string[] {
         const n2 = new Big(n)
-        if (n2.mod(2).gt(0) || n2.lte(4)) return []
+        if (n2.mod(2).eq(1) || n2.eq(2)) return []
+        if (n2.eq(4)) return ['2']
         let len = 0
         const goldbach: string[] = new Array(1)
         const half = n2.div(2)
