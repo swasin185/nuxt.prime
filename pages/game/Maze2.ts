@@ -232,13 +232,17 @@ export default class Maze2 {
                 }
             }
 
-            this.finishArea = new Coordinate(Math.floor((Math.random() * this._size_2) / 2) * 2 + 1, Math.floor((Math.random() * this._size_2) / 2) * 2 + 1)
+            this.finishArea = new Coordinate(
+                Math.floor((Math.random() * this._size_2) / 2) * 2 + 1,
+                Math.floor((Math.random() * this._size_2) / 2) * 2 + 1)
 
             connect -= 0.5
             for (let i = 1; i <= this._size_2; i++)
                 for (let j = 1; j <= this._size_2; j++)
-                    if (!(i % 2 == 1 && j % 2 == 1) && this.map[i][j] == Maze2.WALL && Math.random() < connect) this.map[i][j] = Maze2.WAY
-                    else if (this.map[i][j] != Maze2.WALL) this.map[i][j] = Maze2.WAY
+                    if (!(i % 2 == 1 && j % 2 == 1) && this.map[i][j] == Maze2.WALL && Math.random() < connect) 
+                        this.map[i][j] = Maze2.WAY
+                    else if (this.map[i][j] != Maze2.WALL)
+                        this.map[i][j] = Maze2.WAY
 
             this.paintMaze()
             console.timeEnd('generate')
@@ -269,7 +273,9 @@ export default class Maze2 {
         this.path = []
         this.portals = []
         this.found = false
-        for (let i = 1; i <= this._size_2; i++) for (let j = 1; j <= this._size_2; j++) if (this.map[i][j] != Maze2.WALL) this.map[i][j] = Maze2.WAY
+        for (let i = 1; i <= this._size_2; i++) for (let j = 1; j <= this._size_2; j++) 
+            if (this.map[i][j] != Maze2.WALL) 
+                this.map[i][j] = Maze2.WAY
         //this.paintMaze();
         //this.paintPath();
         this.hidePath()
@@ -322,13 +328,15 @@ export default class Maze2 {
     private addPortal(area: Coordinate): void {
         let i = 0
         while (i < this.portals.length && !this.portals[i].equals(area)) i++
-        if (i == this.portals.length) this.portals.push(new Coordinate(area.i, area.j))
+        if (i == this.portals.length)
+            this.portals.push(new Coordinate(area.i, area.j))
     }
 
     public removePortal(area: Coordinate): void {
         let i = 0
         while (i < this.portals.length && !this.portals[i].equals(area)) i++
-        if (i < this.portals.length) this.portals.splice(i, 1)
+        if (i < this.portals.length)
+            this.portals.splice(i, 1)
     }
 
     private addNewRunner(walk: number): void {
@@ -338,7 +346,8 @@ export default class Maze2 {
             this.teams.push(new Runner(this, portal.i, portal.j))
             portal = this.portals[++i]
         }
-        if (!this.waiting) this.portals.splice(0, i)
+        if (!this.waiting)
+            this.portals.splice(0, i)
     }
 
     public async solveMaze(delay: number = 0, waiting: boolean = true) {
@@ -358,7 +367,8 @@ export default class Maze2 {
                         if (runner.getLocation().equals(this.finishArea)) {
                             runner.setDirection(Maze2.NONE)
                             this.found = true
-                        } else runner.findNewPath() // หาเส้นทางใหม่
+                        } else 
+                            runner.findNewPath() // หาเส้นทางใหม่
                         if (runner.getDirection() > Maze2.NONE) {
                             if (runner.beyondBoundary()) {
                                 this.addPortal(runner.getLocation())
@@ -367,7 +377,8 @@ export default class Maze2 {
                                 this.removePortal(runner.getLocation())
                                 runner.setDirection(Maze2.NONE)
                             }
-                            if (this.found) this.isUpdatePath(runner.getLocation())
+                            if (this.found) 
+                                this.isUpdatePath(runner.getLocation())
                         } else this.removePortal(runner.getLocation())
                         if (runner.getDirection() == Maze2.NONE)
                             // ถ้าไม่มีเส้นทางใหม่ ให้กลับบ้าน
@@ -467,7 +478,8 @@ class Runner {
         if (this.walk == undefined || this.walk <= Maze2.WAY) {
             this.walk = 1
             this.maze.setMap(this.locate, this.walk)
-        } else this.boundary = this.walk * Maze2.GOLDEN
+        } else 
+            this.boundary = this.walk * Maze2.GOLDEN
 
         this.route = []
         this.active = true
@@ -505,11 +517,11 @@ class Runner {
         this.locate = locate
     }
 
-    private setBoundary(): void {
-        if (this.maze.getPathLength() > 0) {
-            this.boundary = this.maze.getPathLength() - this.maze.getFinishDistanct(this.getLocation())
-        }
-    }
+    // private setBoundary(): void {
+    //     if (this.maze.getPathLength() > 0) {
+    //         this.boundary = this.maze.getPathLength() - this.maze.getFinishDistanct(this.getLocation())
+    //     }
+    // }
 
     public move(): void {
         const map = this.maze.getMap()
@@ -570,10 +582,14 @@ class Runner {
                 while ((this.direction & direct) == Maze2.NONE) this.direction >>= 1
             } else this.direction = Maze2.NONE
         } else {
-            if (this.direction == Maze2.NORTH && map[this.locate.i - 1][this.locate.j] != Maze2.WALL) this.direction = Maze2.NONE
-            else if (this.direction == Maze2.WEST && map[this.locate.i][this.locate.j - 1] != Maze2.WALL) this.direction = Maze2.NONE
-            else if (this.direction == Maze2.SOUTH && map[this.locate.i + 1][this.locate.j] != Maze2.WALL) this.direction = Maze2.NONE
-            else if (this.direction == Maze2.EAST && map[this.locate.i][this.locate.j + 1] != Maze2.WALL) this.direction = Maze2.NONE
+            if (this.direction == Maze2.NORTH && map[this.locate.i - 1][this.locate.j] != Maze2.WALL)
+                this.direction = Maze2.NONE
+            else if (this.direction == Maze2.WEST && map[this.locate.i][this.locate.j - 1] != Maze2.WALL) 
+                this.direction = Maze2.NONE
+            else if (this.direction == Maze2.SOUTH && map[this.locate.i + 1][this.locate.j] != Maze2.WALL)
+                this.direction = Maze2.NONE
+            else if (this.direction == Maze2.EAST && map[this.locate.i][this.locate.j + 1] != Maze2.WALL)
+                this.direction = Maze2.NONE
         }
     }
 
